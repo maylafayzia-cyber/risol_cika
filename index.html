@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Risol Cika</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #fff3e0;
+            text-align: center;
+            margin: 0;
+        }
+
+        .header {
+            background-color: #8d6e63;
+            color: white;
+            padding: 25px;
+        }
+
+        .produk {
+            display: inline-block;
+            vertical-align: top;
+            background-color: white;
+            width: 280px;
+            margin: 25px 10px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px gray;
+        }
+
+        .produk img {
+            width: 240px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .harga {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .jumlah {
+            margin: 15px;
+        }
+
+        button {
+            width: 35px;
+            height: 35px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .angka {
+            display: inline-block;
+            width: 35px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .pesan {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 20px;
+        }
+
+        .total {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .footer {
+            background-color: #8d6e63;
+            color: white;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>🥟 RISOL CIKA 🥟</h1>
+        <p>Renyah, manis, dan bikin nagih!coba sekali pasti ingin lagi</p>
+    </div>
+
+    <!-- RISOL COKLAT -->
+    <div class="produk">
+
+        <img src="risoles-cokelat-lumer-foto-resep-utama.jpg" alt="Risol Coklat">
+
+        <h2>🍫 Risol Coklat</h2>
+
+        <p>Risol dengan isian coklat yang manis dan lezat.</p>
+
+        <p class="harga">Rp3.000 / pcs</p>
+
+        <div class="jumlah">
+            <button onclick="kurangCoklat()">−</button>
+
+            <span class="angka" id="coklat">0</span>
+
+            <button onclick="tambahCoklat()">+</button>
+        </div>
+
+    </div>
+
+
+    <!-- RISOL MATCHA -->
+    <div class="produk">
+
+        <img src="3b489aa205b795b0d0dc618399c9a4e2_400x250.jpg" alt="Risol Matcha">
+
+        <h2>🍵 Risol Matcha</h2>
+
+        <p>Risol dengan rasa matcha yang lembut dan nikmat.</p>
+
+        <p class="harga">Rp3.000 / pcs</p>
+
+        <div class="jumlah">
+            <button onclick="kurangMatcha()">−</button>
+
+            <span class="angka" id="matcha">0</span>
+
+            <button onclick="tambahMatcha()">+</button>
+        </div>
+
+    </div>
+
+
+    <!-- TOTAL -->
+    <div>
+        <p class="total">
+            Total Pesanan: Rp<span id="total">0</span>
+        </p>
+
+        <a class="pesan" href="#" onclick="pesanWhatsApp()">
+            📱 Pesan Sekarang
+        </a>
+    </div>
+
+
+    <div class="footer">
+        <p>Risol Cika ❤️</p>
+    </div>
+
+
+    <script>
+
+        let coklat = 0;
+        let matcha = 0;
+
+        const harga = 3000;
+
+        function tambahCoklat() {
+            coklat++;
+            tampilkan();
+        }
+
+        function kurangCoklat() {
+            if (coklat > 0) {
+                coklat--;
+            }
+            tampilkan();
+        }
+
+        function tambahMatcha() {
+            matcha++;
+            tampilkan();
+        }
+
+        function kurangMatcha() {
+            if (matcha > 0) {
+                matcha--;
+            }
+            tampilkan();
+        }
+
+        function tampilkan() {
+
+            document.getElementById("coklat").innerHTML = coklat;
+
+            document.getElementById("matcha").innerHTML = matcha;
+
+            let total = (coklat + matcha) * harga;
+
+            document.getElementById("total").innerHTML =
+                total.toLocaleString("id-ID");
+        }
+
+
+        function pesanWhatsApp() {
+
+            let total = (coklat + matcha) * harga;
+
+            let pesan =
+                "Halo, saya ingin pesan Risol Cika%0A%0A" +
+                "🍫 Risol Coklat: " + coklat + " pcs%0A" +
+                "🍵 Risol Matcha: " + matcha + " pcs%0A%0A" +
+                "💰 Total: Rp" + total.toLocaleString("id-ID");
+
+            window.open(
+                "https://wa.me/6285732491082?text=" + pesan,
+                "_blank"
+            );
+        }
+
+    </script>
+
+</body>
+</html>
